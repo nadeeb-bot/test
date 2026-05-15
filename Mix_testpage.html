@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomy Terminology - Test</title>
+    <style>
+        /* style.css */
+
+/* ===== รีเซ็ต CSS พื้นฐาน ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ /* ===== ตั้งค่าฟอนต์และพื้นหลังทั้งหน้า ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5ede0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== รูปร่างกายพื้นหลังซ้าย (ตกแต่ง) ===== */
+        .bg-body-left {
+            position: fixed;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 220px;
+            height: 600px;
+            opacity: 0.12;
+            z-index: 0;
+        }
+
+        /* ===== รูปร่างกายพื้นหลังขวา (ตกแต่ง) ===== */
+        .bg-body-right {
+            position: fixed;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 220px;
+            height: 600px;
+            opacity: 0.12;
+            z-index: 0;
+        }
+
+        /* ===== wrapper หลักของเนื้อหาทั้งหมด ===== */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        /* ===== แถบนำทาง (Navbar) ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+
+        /* ===== ส่วนซ้ายของ Navbar (โลโก้ + ชื่อ) ===== */
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* ===== ไอคอนโลโก้กระดูก ===== */
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+        }
+
+        /* ===== ชื่อเว็บไซต์ ===== */
+        .site-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #5a8fa3;
+            letter-spacing: 1px;
+        }
+
+        /* ===== ส่วนขวาของ Navbar (Profile + Search) ===== */
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+            padding: 12px 25px;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        /* ===== ไอคอนและข้อความใน Navbar ===== */
+        .nav-icon-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #5a8fa3;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        /* ===== เส้นคั่นระหว่าง Profile และ Search ===== */
+        .nav-divider {
+            color: #aaa;
+            font-size: 1.1rem;
+            padding: 0 5px;
+        }
+
+        /* ===== แถบแท็บเมนูหลัก ===== */
+        .tab-bar {
+            background-color: rgba(255, 255, 255, 0.55);
+            border-radius: 50px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        /* ===== ปุ่มแท็บแต่ละปุ่ม ===== */
+        .tab-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #5a8fa3;
+            background: transparent;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ปุ่มแท็บที่ถูกเลือก (active) ===== */
+        .tab-btn.active {
+            background: linear-gradient(180deg, #c8e6f5 0%, #a8d4ee 100%);
+            color: #2e6a8a;
+            box-shadow: 0 3px 10px rgba(100, 180, 220, 0.4);
+        }
+
+        /* ===== เอฟเฟกต์ hover ของปุ่มแท็บ ===== */
+        .tab-btn:hover:not(.active) {
+            background-color: rgba(200, 230, 245, 0.4);
+        }
+
+        /* ===== กล่องเนื้อหาหลัก ===== */
+        .content-card {
+            background-color: rgba(255, 255, 255, 0.75);
+            border-radius: 25px;
+            padding: 35px 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+            min-height: 500px;
+        }
+
+        /* ===== ส่วนหัวของหน้า Test (ชื่อหัวข้อ + ปุ่มย้อนกลับ) ===== */
+        .test-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        /* ===== กลุ่มชื่อหัวข้อ + ไอคอน ===== */
+        .test-title-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* ===== ไอคอนหน้าชื่อหัวข้อ Test ===== */
+        .test-title-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #a8d8ea, #7ec8e3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(100, 180, 220, 0.3);
+        }
+
+        /* ===== ชื่อหัวข้อ Test ===== */
+        .test-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2e6a8a;
+        }
+
+        /* ===== คำอธิบายใต้ชื่อหัวข้อ ===== */
+        .test-subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        /* ===== ปุ่มย้อนกลับหน้าหลัก ===== */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #e8f4f8, #d0eaf5);
+            border: 1.5px solid #a8d4ee;
+            border-radius: 50px;
+            color: #2e6a8a;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== เอฟเฟกต์ hover ปุ่มย้อนกลับ ===== */
+        .back-btn:hover {
+            background: linear-gradient(135deg, #c8e6f5, #a8d4ee);
+            box-shadow: 0 4px 15px rgba(100, 180, 220, 0.35);
+            transform: translateX(-3px);
+        }
+
+        /* ===== เส้นคั่นใต้หัวข้อ ===== */
+        .divider {
+            width: 100%;
+            height: 1.5px;
+            background: linear-gradient(90deg, #a8d4ee, transparent);
+            margin-bottom: 30px;
+            border-radius: 50px;
+        }
+
+        /* ===== กริดแสดงหมวดหมู่ทั้งหมด ===== */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        /* ===== การ์ดหมวดหมู่แต่ละอัน ===== */
+        .category-card {
+            background: linear-gradient(135deg, #ffffff, #f0f8fc);
+            border: 1.5px solid #d0eaf5;
+            border-radius: 18px;
+            padding: 22px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== เอฟเฟกต์ก่อนการ์ด (แถบสีซ้าย) ===== */
+        .category-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #7ec8e3, #a8d4ee);
+            border-radius: 18px 0 0 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* ===== เอฟเฟกต์ hover การ์ดหมวดหมู่ ===== */
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(100, 180, 220, 0.25);
+            border-color: #7ec8e3;
+            background: linear-gradient(135deg, #f0f8fc, #e0f2f9);
+        }
+
+        /* ===== แสดงแถบสีซ้ายเมื่อ hover ===== */
+        .category-card:hover::before {
+            opacity: 1;
+        }
+
+        /* ===== กล่องไอคอนของการ์ดหมวดหมู่ ===== */
+        .card-icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        /* ===== เอฟเฟกต์ hover ไอคอน ===== */
+        .category-card:hover .card-icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* ===== ข้อความในการ์ดหมวดหมู่ ===== */
+        .card-text {
+            flex: 1;
+        }
+
+        /* ===== ชื่อหมวดหมู่ ===== */
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2e6a8a;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        /* ===== จำนวนข้อสอบในหมวดหมู่ ===== */
+        .card-count {
+            font-size: 0.82rem;
+            color: #88b8cc;
+            font-weight: 500;
+        }
+
+        /* ===== ลูกศรด้านขวาของการ์ด ===== */
+        .card-arrow {
+            color: #aad4e8;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* ===== เอฟเฟกต์ hover ลูกศร ===== */
+        .category-card:hover .card-arrow {
+            transform: translateX(5px);
+            color: #5aabce;
+        }
+
+        /* ===== สีพื้นหลังไอคอนแต่ละหมวดหมู่ ===== */
+        .icon-blue   { background: linear-gradient(135deg, #daf0f9, #b8e0f5); }
+        .icon-green  { background: linear-gradient(135deg, #d9f5e8, #b4e8d0); }
+        .icon-purple { background: linear-gradient(135deg, #ece3ff, #d5c5ff); }
+        .icon-orange { background: linear-gradient(135deg, #fff0de, #ffd9a8); }
+        .icon-pink   { background: linear-gradient(135deg, #ffe3ee, #ffbdd5); }
+        .icon-teal   { background: linear-gradient(135deg, #d9f5f2, #a8e8e3); }
+        .icon-yellow { background: linear-gradient(135deg, #fffbd9, #fff0a0); }
+        .icon-red    { background: linear-gradient(135deg, #ffe3e3, #ffb8b8); }
+        .icon-indigo { background: linear-gradient(135deg, #e3e8ff, #b8c5ff); }
+        .icon-cyan   { background: linear-gradient(135deg, #d9f0ff, #a0d8f5); }
+        .icon-lime   { background: linear-gradient(135deg, #efffda, #ccf5a0); }
+        .icon-rose   { background: linear-gradient(135deg, #ffeef5, #ffcce0); }
+        .icon-amber  { background: linear-gradient(135deg, #fff5d9, #ffe0a0); }
+        
+    </style>
+</head>
+<body>
+
+<!--- wrapper หลักของเนื้อหาทั้งหมด --->
+<div class="wrapper">
+
+    <!--- แถบนำทาง (Navbar) --->
+    <nav class="navbar">
+
+        <!--- ส่วนซ้าย: โลโก้ + ชื่อเว็บ (คลิกได้เพื่อกลับหน้าหลัก) --->
+        <a class="navbar-left" href="style2.html">
+
+            <!--- ไอคอนกระดูก SVG --->
+            <div class="logo">
+				<span class="logo-icon">🦴</span>	
+			</div>
+
+            <!--- ชื่อเว็บไซต์ --->
+            <div class="site-title">Test Anatomy Terminology</div>
+        </a>
+
+        <!--- ส่วนขวา: ปุ่ม Profile และ Search --->
+        <div class="navbar-right">
+
+            <!--- ปุ่ม Profile --->
+            <div class="nav-icon-text">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="#5a8fa3" stroke-width="2">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+                PROFILE
+            </div>
+
+            <!--- เส้นคั่นระหว่าง Profile กับ Search --->
+            <span class="nav-divider">|</span>
+
+            <!--- ปุ่ม Search --->
+            <div class="nav-icon-text">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="#5a8fa3" stroke-width="2">
+                    <circle cx="11" cy="11" r="7"/>
+                    <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+                </svg>
+                SEARCH
+            </div>
+        </div>
+    </nav>
+
+    <!--- แถบแท็บเมนูหลัก --->
+    <div class="tab-bar">
+        <a class="tab-btn" href="/demo.html" style="text-decoration: none;">HOME</a>
+        <a class="tab-btn " href="/Short_page/Shortnotepag.html" style="text-decoration: none;">SHORT NOTES</a>
+        <button class="tab-btn" onclick="setActive(this)">FLASH CARDS</button>
+        <button class="tab-btn" onclick="setActive(this)">MEMORY GAME</button>
+        <button class="tab-btn active" href="/Testpage.html">TEST</button>
+        <a class="tab-btn" href="https://app.lumi.education/run/iy13pS"style="text-decoration: none;">VOCABULARY</a>
+    </div>
+
+    <!--- กล่องเนื้อหาหลักของหน้า Test --->
+    <div class="content-card">
+
+        <!--- ส่วนหัว: ชื่อหัวข้อ + ปุ่มย้อนกลับ --->
+        <div class="test-header">
+
+            <!--- กลุ่มไอคอน + ชื่อหัวข้อ --->
+            <div class="test-title-group">
+
+                <!--- ไอคอนหน้าชื่อหัวข้อ --->
+                <div class="test-title-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="#ffffff" stroke-width="2.5">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10
+                                 a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                        <rect x="9" y="3" width="6" height="4" rx="2"/>
+                        <line x1="9" y1="12" x2="15" y2="12"/>
+                        <line x1="9" y1="16" x2="13" y2="16"/>
+                    </svg>
+                </div>
+
+                <!--- ชื่อหัวข้อและคำอธิบาย --->
+                <div>
+                    <div class="test-title">Select a Topic to Test</div>
+                    <div class="test-subtitle">
+                        เลือกหมวดหมู่ที่ต้องการทดสอบความรู้ของคุณ
+                    </div>
+                </div>
+            </div>
+
+            <!--- ปุ่มย้อนกลับหน้าหลัก --->
+            <a class="back-btn" href="/demo.html" style="text-decoration: none; color: inherit;">
+                <svg width="18" height="18" viewBox="0 0 24 24"
+                     fill="none" stroke="#2e6a8a" stroke-width="2.5">
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12 19 5 12 12 5"/>
+                </svg>
+                Back to Home
+            </a>
+        </div>
+
+        <!--- เส้นคั่นใต้หัวข้อ --->
+        <div class="divider"></div>
+
+        <!--- กริดการ์ดหมวดหมู่ทั้งหมด (3 คอลัมน์) --->
+        <div class="category-grid">
+
+            <!--- การ์ดที่ 1: Introduction to Human Anatomy and Physiology --->
+            <a href="https://app.lumi.education/run/dQjRhj" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon-box icon-blue">🧬</div>
+                <div class="card-text">
+                    <div class="card-title">Introduction to Human<br>Anatomy and Physiology</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </a>
+
+            <!--- การ์ดที่ 2: Basic Cell Biology --->
+            <a  href="https://app.lumi.education/run/rfCGIP" class="category-card"style="text-decoration: none; color: inherit;" >
+                <div class="card-icon-box icon-green">🔬</div>
+                <div class="card-text">
+                    <div class="card-title">Basic Cell Biology</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </a>
+
+            <!--- การ์ดที่ 3: Tissues and Histology --->
+            <a href="https://app.lumi.education/run/_DfpG0" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon-box icon-purple">🧫</div>
+                <div class="card-text">
+                    <div class="card-title">Tissues and Histology</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </a>
+
+            <!--- การ์ดที่ 4: Integumentary System --->
+            <a href="https://app.lumi.education/run/XI-Gtv" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon-box icon-orange">🩹</div>
+                <div class="card-text">
+                    <div class="card-title">Integumentary System</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </a>
+
+            <!--- การ์ดที่ 5: Skeletal and Muscular System --->
+            <a href="https://app.lumi.education/run/xLAZVk" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon-box icon-teal">🦴</div>
+                <div class="card-text">
+                    <div class="card-title">Skeletal and Muscular System</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </a>
+
+            <!--- การ์ดที่ 6: Nervous System --->
+            <a href="https://app.lumi.education/run/H5lLwh" class="category-card" style="text-decoration: none; color: inherit;" >
+                <div class="card-icon-box icon-yellow">🧠</div>
+                <div class="card-text">
+                    <div class="card-title">Nervous System</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </a>
+
+            <!--- การ์ดที่ 7: Endocrine System --->
+            <a href= "https://app.lumi.education/run/1QiSSh" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="card-icon-box icon-pink">⚗️</div>
+                <div class="card-text">
+                    <div class="card-title">Endocrine System</div>
+                    <div class="card-count">20 Questions</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </a>
+
+            <!--- การ์ดที่ 8: Respiratory System --->
+            <div class="category-card" onclick="startTest('Respiratory System')">
+                <div class="card-icon-box icon-cyan">🫁</div>
+                <div class="card-text">
+                    <div class="card-title">Respiratory</div>
+                    <div class="card-count">20 Questions</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </div>
+            <!--- การ์ดที่ 9: Cardiovascular System--->
+            <div class="category-card" onclick="startTest('Cardiovascular System')">
+                <div class="card-icon-box icon-red">❤️</div>
+                <div class="card-text">
+                    <div class="card-title">Cardiovascular System</div>
+                    <div class="card-count">22 Questions</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </div>
+            <!--- การ์ดที่ 10: Immune System --->
+            <div class="category-card" onclick="startTest('Immune System')">
+                <div class="card-icon-box icon-indigo">🛡️</div>
+                <div class="card-text">
+                    <div class="card-title">Immune System</div>
+                    <div class="card-count">18 Questions</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </div>
+            <!--- การ์ดที่ 11: Urinary system --->
+            <div class="category-card" onclick="startTest('Urinary System')">
+                <div class="card-icon-box icon-lime">🚽</div>
+                <div class="card-text">
+                    <div class="card-title">Urinary System</div>
+                    <div class="card-count">20 Questions</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </div>
+            <!--- การ์ดที่ 12: Digestive System --->
+            <div class="category-card" onclick="startTest('Digestive System')">
+                <div class="card-icon-box icon-rose">🍽️</div>
+                <div class="card-text">
+                    <div class="card-title">Digestive System</div>
+                    <div class="card-count">25 Questions</div>
+                </div>
+                <span class="card-arrow">›</span>   
+            </div>
+            <!--- การ์ดที่ 13: Reproductive System --->
+            <div class="category-card" onclick="startTest('Reproductive System')">
+                <div class="card-icon-box icon-amber">👶</div>
+                <div class="card-text">
+                    <div class="card-title">Reproductive System</div>
+                    <div class="card-count">20 Questions</div>
+                </div>
+                <span class="card-arrow">›</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
